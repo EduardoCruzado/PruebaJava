@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/template :: head">
+</head>
+
+<body>
+  <header th:replace="/template :: header"></header>
+  <div class="container">
+    <h1 th:text="${titulo}"></h1>
+  </div>
+  <div class="container">
+    <a class="btn btn-primary btn-sm" th:href="@{/productos/crearProducto}" title="Crear Producto">Nuevo Producto</a>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">N°</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="pr:${productos}">
+          <th scope="row" th:text="${pr.id_prod}"></th>
+          <th scope="row" th:text="${pr.nombre}"></th>
+          <th scope="row" th:text="${pr.categoria}"></th>
+          <th scope="row" th:text="${pr.precioU}"></th>
+          <th scope="row" th:text="${pr.estado}"></th>
+          <th scope="row" class="nav-link" href="#">Editar</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

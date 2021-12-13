@@ -10,19 +10,38 @@ import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
 @RequestMapping("/productos")
 public class ProductoController {
+
     @Autowired
     private IProductoService productoService;
+
     @GetMapping()
     public String listarProducto(Model model){
         List<ProductoModel> listadoProductos = productoService.listarTodos();
         model.addAttribute("titulo", "Productos");
         model.addAttribute("productos", listadoProductos);
-        return "listar";
+        return "listarProducto";
+    }
+
+    @GetMapping("/crearProducto")
+    public String crearProducto(Model model){
+        ProductoModel producto = new ProductoModel();
+        //model.addAttribute("titulo", "Formulario: Nuevo Producto");
+        model.addAttribute("producto", producto);
+        return "formProducto";
+    }
+
+    @PostMapping("/save")
+    public String guardar(@ModelAttribute ProductoModel producto){
+        productoService.guardarProducto(producto);
+        System.out.println("Producto guardado");
+        return "redirect:/productos";
     }
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/template :: head">
+</head>
+
+<body>
+    <header th:replace="/template :: header"></header>
+    <div class="container">
+        <form th:action="@{/productos/save}" th:object="${producto}" method="post"> 
+            <div class="form-group row">
+                <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{nombre}" class="form-control" id="nombre" placeholder="Nombre del producto">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="categoria"  class="col-sm-2 col-form-label">Categoria:</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{categoria}" class="form-control" id="categoria" placeholder="Categoria del producto">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="precioU"  class="col-sm-2 col-form-label">Precio:</label>
+                <div class="col-sm-10">
+                    <input type="number" th:field="*{precioU}" class="form-control" id="precioU" placeholder="Precio del producto">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="estado" class="col-sm-2 col-form-label">Estado:</label>
+                <div class="col-sm-10">
+                    <select th:field="*{estado}" class="form-control" id="estado">
+                    <option value="activo">activo</option>
+                    <option value="inactivo">inactivo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <input type="submit" class="btn btn-primary" value="Guardar">
+                </div>
+            </div>
+        </form>
+
+    </div>
+</body>
+
+</html>
