@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.eduardo.prueba.models.ProductoModel;
 import com.eduardo.prueba.services.IProductoService;
+import com.eduardo.prueba.services.ProductoServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProductoController {
 
     @Autowired
-    private IProductoService productoService;
+    private ProductoServiceImpl productoService;
 
     @GetMapping()
     public String listarProducto(Model model){
@@ -42,6 +43,7 @@ public class ProductoController {
     public String guardar(@ModelAttribute ProductoModel producto){
         productoService.guardarProducto(producto);
         System.out.println("Producto guardado");
+        System.out.println(producto);
         return "redirect:/productos";
     }
 }

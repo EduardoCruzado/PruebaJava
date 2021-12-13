@@ -7,27 +7,43 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "pedido")
-public class PedidoModel implements Serializable{
+public class PedidoModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private Long id;
+    private Long id_ped;
+    @Column(name = "cliente")
+    private String cliente;
+    @Column(name = "estado")
     private String estado;
+    @Column(name = "fecha")
     private LocalDateTime fecha;
+    @Column(name = "cantImp")
     private int cantImp;
+    @Column(name = "totalImpl")
     private Float totalImp;
-    private Float total;
+    @Column(name = "totalP")
+    private Float totalP;
+    
 
-    @ManyToOne
-    @JoinColumn(name = "id_prod")
-    private ProductoModel producto;
+    public Long getId_ped() {
+        return id_ped;
+    }
 
-    public Long getId() {
-        return id;
+    public void setId_ped(Long id_ped) {
+        this.id_ped = id_ped;
     }
 
     public int getCantImp() {
         return cantImp;
+    }
+
+    public Float getTotalP() {
+        return totalP;
+    }
+
+    public void setTotalP(Float totalP) {
+        this.totalP = totalP;
     }
 
     public void setCantImp(int cantImp) {
@@ -40,26 +56,6 @@ public class PedidoModel implements Serializable{
 
     public void setTotalImp(Float totalImp) {
         this.totalImp = totalImp;
-    }
-
-    public Float getTotal() {
-        return total;
-    }
-
-    public void setTotal(Float total) {
-        this.total = total;
-    }
-
-    public ProductoModel getProducto() {
-        return producto;
-    }
-
-    public void setProducto(ProductoModel producto) {
-        this.producto = producto;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getEstado() {
@@ -86,27 +82,24 @@ public class PedidoModel implements Serializable{
         this.cliente = cliente;
     }
 
-    private String cliente;
-
     public PedidoModel() {
     }
 
-    public PedidoModel(Long id, String estado, LocalDateTime fecha, int cantImp, Float totalImp, Float total,
-            ProductoModel producto, String cliente) {
-        this.id = id;
+    public PedidoModel(Long id_ped, String estado, LocalDateTime fecha, int cantImp, Float totalImp, Float totalP,
+            String cliente) {
+        this.id_ped = id_ped;
         this.estado = estado;
         this.fecha = fecha;
         this.cantImp = cantImp;
         this.totalImp = totalImp;
-        this.total = total;
-        this.producto = producto;
+        this.totalP = totalP;
         this.cliente = cliente;
     }
 
     @Override
     public String toString() {
         return "PedidoModel [cantImp=" + cantImp + ", cliente=" + cliente + ", estado=" + estado + ", fecha=" + fecha
-                + ", id=" + id + ", producto=" + producto + ", total=" + total + ", totalImp=" + totalImp + "]";
+                + ", id_ped=" + id_ped + ", totalImp=" + totalImp + ", totalP=" + totalP + "]";
     }
 
 }

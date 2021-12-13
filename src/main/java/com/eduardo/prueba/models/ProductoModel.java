@@ -11,9 +11,13 @@ public class ProductoModel implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id_prod;
+    @Column(name="nombre")
     private String nombre;
+    @Column(name="categoria")
     private String categoria;
+    @Column(name="preciou")
     private float precioU;
+    @Column(name="estado")
     private String estado;
 
     

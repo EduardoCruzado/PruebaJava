@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/template :: head">
+</head>
+
+<body>
+  <header th:replace="/template :: header"></header>
+  <div class="container">
+    <h1 th:text="${titulo}"></h1>
+  </div>
+  <div class="container">
+    <a class="btn btn-primary btn-sm" th:href="@{/orders/crearPedido}" title="Crear Producto">Nuevo Pedido</a>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">N°</th>
+          <th scope="col">Cliente</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Total</th>
+          <th scope="col">Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="pd:${pedidos}">
+          <th scope="row" th:text="${pd.id_ped}"></th>
+          <th scope="row" th:text="${pd.cliente}"></th>
+          <th scope="row" th:text="${pd.estado}"></th>
+          <th scope="row" th:text="${pd.fecha}"></th>
+          <th scope="row" th:text="${pd.totalP}"></th>
+          <th scope="row" class="nav-link" href="#">Editar</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.eduardo.prueba.models.ProductoModel;
 import com.eduardo.prueba.repositories.ProductoRepository;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -28,6 +29,7 @@ public class ProductoServiceImpl implements IProductoService{
 
     @Override
     public void guardarProducto(ProductoModel producto) {
+        System.out.println(producto.getNombre());
         productoRepository.save(producto);
         
     }
