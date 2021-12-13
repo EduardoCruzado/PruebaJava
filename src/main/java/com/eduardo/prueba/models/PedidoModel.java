@@ -1,9 +1,11 @@
 package com.eduardo.prueba.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "pedido")
@@ -17,7 +19,8 @@ public class PedidoModel implements Serializable {
     @Column(name = "estado")
     private String estado;
     @Column(name = "fecha")
-    private LocalDateTime fecha;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fecha;
     @Column(name = "cantImp")
     private int cantImp;
     @Column(name = "totalImpl")
@@ -66,11 +69,11 @@ public class PedidoModel implements Serializable {
         this.estado = estado;
     }
 
-    public LocalDateTime getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -85,7 +88,7 @@ public class PedidoModel implements Serializable {
     public PedidoModel() {
     }
 
-    public PedidoModel(Long id_ped, String estado, LocalDateTime fecha, int cantImp, Float totalImp, Float totalP,
+    public PedidoModel(Long id_ped, String estado, LocalDate fecha, int cantImp, Float totalImp, Float totalP,
             String cliente) {
         this.id_ped = id_ped;
         this.estado = estado;

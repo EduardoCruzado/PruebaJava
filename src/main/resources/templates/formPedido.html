@@ -7,7 +7,7 @@
 <body>
     <header th:replace="/template :: header"></header>
     <div class="container">
-        <form th:action="@{/pedido/save}" th:object="${pedido}" method="post"> 
+        <form th:action="@{/orders/saveP}" th:object="${pedido}" method="post"> 
             <div class="form-group row">
                 <label for="cliente" class="col-sm-2 col-form-label">Cliente:</label>
                 <div class="col-sm-10">
@@ -34,7 +34,6 @@
                 </div>
             </div>
         </form>
-
     </div>
 </body>
 
