@@ -39,7 +39,7 @@ public class ProductoController {
         model.addAttribute("producto", producto);
         return "formProducto";
     }
-
+    //acceder atraves de la url
     @GetMapping("/edit/{id_prod}")
     public String editarProducto(@PathVariable("id_prod") Long idProducto, Model model){
         ProductoModel producto = productoService.buscarPorId(idProducto);

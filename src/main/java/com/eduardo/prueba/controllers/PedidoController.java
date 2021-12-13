@@ -42,7 +42,7 @@ public class PedidoController {
         
         return "formPedido";
     }
-
+    //acceder atraves de la url
     @GetMapping("/{id_ped}")
     public String editarPedido(@PathVariable("id_ped") Long idPedido, Model model){
         PedidoModel pedido = pedidoService.buscarPorId(idPedido);
