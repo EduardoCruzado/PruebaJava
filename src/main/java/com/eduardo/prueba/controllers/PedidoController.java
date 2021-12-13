@@ -5,6 +5,7 @@ import java.util.List;
 import com.eduardo.prueba.models.PedidoModel;
 import com.eduardo.prueba.models.ProductoModel;
 import com.eduardo.prueba.services.PedidoServiceImpl;
+import com.eduardo.prueba.services.ProductoServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PedidoController {
     @Autowired
     private PedidoServiceImpl pedidoService;
+    @Autowired
+    private ProductoServiceImpl productoService;
 
     @GetMapping()
     public String listarPedido(Model model){
@@ -32,17 +35,23 @@ public class PedidoController {
     @GetMapping("/crearPedido")
     public String crearPedido(Model model){
         PedidoModel pedido = new PedidoModel();
-        //model.addAttribute("titulo", "Formulario: Nuevo Producto");
+        List<ProductoModel> listadoProductos = productoService.listarTodos();
+        model.addAttribute("titulo", "Formulario: Nuevo Pedido");
         model.addAttribute("pedido", pedido);
+        model.addAttribute("lista", listadoProductos);
         
         return "formPedido";
     }
 
-    /*@PostMapping("{id}")
-    public String añadirProducto(@PathVariable("id") Long id){
-        ProductoModel producto = new ProductoModel();
-        
-    }*/
+    @GetMapping("/{id_ped}")
+    public String editarPedido(@PathVariable("id_ped") Long idPedido, Model model){
+        PedidoModel pedido = pedidoService.buscarPorId(idPedido);
+        model.addAttribute("id", "Order N°"+ pedido.getId_ped() );
+        model.addAttribute("cliente", "Cliente:  "+ pedido.getCliente() );
+        model.addAttribute("estado", "Estado:  "+ pedido.getEstado() );
+        model.addAttribute("fecha", "Fecha:  "+ pedido.getFecha() );
+        return "editarPedido";
+    }
 
     @PostMapping("/saveP")
     public String guardar(@ModelAttribute PedidoModel pedido){

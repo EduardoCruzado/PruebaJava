@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,7 +35,15 @@ public class ProductoController {
     @GetMapping("/crearProducto")
     public String crearProducto(Model model){
         ProductoModel producto = new ProductoModel();
-        //model.addAttribute("titulo", "Formulario: Nuevo Producto");
+        model.addAttribute("titulo", "Formulario: Nuevo Producto");
+        model.addAttribute("producto", producto);
+        return "formProducto";
+    }
+
+    @GetMapping("/edit/{id_prod}")
+    public String editarProducto(@PathVariable("id_prod") Long idProducto, Model model){
+        ProductoModel producto = productoService.buscarPorId(idProducto);
+        model.addAttribute("titulo", "Formulario: Editar Producto");
         model.addAttribute("producto", producto);
         return "formProducto";
     }

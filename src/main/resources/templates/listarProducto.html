@@ -10,8 +10,10 @@
     <h1 th:text="${titulo}"></h1>
   </div>
   <div class="container">
-    <a class="btn btn-primary btn-sm" th:href="@{/productos/crearProducto}" title="Crear Producto">Nuevo Producto</a>
-    <table class="table" id="listaProd">
+    <div class="d-flex justify-content-end">
+      <a class="btn btn-primary btn-sm" th:href="@{/productos/crearProducto}" title="Crear Producto">Nuevo Producto</a>
+    </div>
+    <table class="table">
       <thead class="thead-dark">
         <tr>
           <th scope="col">N°</th>
@@ -29,11 +31,27 @@
           <th scope="row" th:text="${pr.categoria}"></th>
           <th scope="row" th:text="${pr.precioU}"></th>
           <th scope="row" th:text="${pr.estado}"></th>
-          <th scope="row" class="nav-link" href="#">Editar</th>
+          <th scope="row"><a class="nav-link" th:href="@{/productos/edit/pr.id_prod}">Editar</a></th>
         </tr>
       </tbody>
     </table>
   </div>
+  <div class="container d-flex justify-content-end">
+    <nav aria-label="...">
+      <ul class="pagination pagination-sm">
+        <li class="page-item disabled">
+          <a class="page-link" href="#!" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#!">1</a></li>
+        <li class="page-item"><a class="page-link" href="#!">2</a></li>
+        <li class="page-item"><a class="page-link" href="#!">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#!">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
 </body>
 
 </html>
